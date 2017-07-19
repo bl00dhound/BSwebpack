@@ -1,5 +1,5 @@
-var userList = require('./userList.js');
-require('../css/style.css');
+import userList from './userList'
+import '../css/style.scss'
 
 const users = [
     { name: 'Oksana', age: 22 }, 
@@ -11,7 +11,7 @@ const users = [
     { name: 'Mykola', age: 27}, 
     { name: 'Andriy', age: 33}, 
     { name: 'Zakhar', age: 40}
-];
+]
 
-var userListModule = new userList(users);
-userListModule.showList();
+userList(users)
+
