@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 
 module.exports = {
@@ -8,7 +7,7 @@ module.exports = {
 	devtool: 'eval-source-map',
 	entry: './src/js/main.js',
 	output: {
-		path: __dirname + '/dist',
+		path: path.resolve(__dirname + '/dist'),
 		filename: 'bundle.js',
 		publicPath: 'dist/'
 	},
@@ -17,24 +16,20 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /(node_modules)/,
-        loader: 'eslint-loader',
-        // options: {
-        //   quiet: true
-        // }
-				// use: [
-				// 	{
-				// 		loader: 'babel-loader',
-				// 		options: {
-				// 			presets: ['env']
-				// 		}
-				// 	},
-				// 	{
-				// 		loader: 'eslint-loader',
-				// 		options: {
-				// 		  emitError: true
-				// 		}
-				// 	}
-				// ]
+				use: [
+          {
+            loader: 'eslint-loader',
+            options: {
+              quiet: true
+            }
+          },
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: ['env']
+						}
+					}
+				]
 			},
 			{
 				test: /\.s?css$/,
@@ -62,15 +57,12 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [
-		new ExtractTextPlugin('style.css')
-	],
-	// plugins: [new webpack.optimize.UglifyJsPlugin({
-	// 	minimize: true,
-	// 	compress: {
-	// 		warnings: false
-	// 	}
-	// })],
+	plugins: [new webpack.optimize.UglifyJsPlugin({
+		minimize: true,
+		compress: {
+			warnings: false
+		}
+	})],
 	devServer: {
 		inline:true,
 		port: 8081
