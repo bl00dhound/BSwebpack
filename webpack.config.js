@@ -74,7 +74,7 @@ module.exports = {
     },
     mangle: {
       except: ['$super', '$', 'exports', 'require']
-    },
+    }
 
   })],
 	devServer: {
