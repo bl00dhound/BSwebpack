@@ -1,6 +1,8 @@
 import userList from './userList'
 import '../css/style.scss'
 
+/* this is comment */
+
 const users = [
 	{ name: 'Oksana', age: 22 }, 
 	{ name: 'Viktor', age: 14 }, 

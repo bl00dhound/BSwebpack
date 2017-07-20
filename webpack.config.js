@@ -7,9 +7,9 @@ module.exports = {
 	devtool: 'eval-source-map',
 	entry: './src/js/main.js',
 	output: {
-		path: path.resolve(__dirname + '/dist'),
+		path: __dirname + '/dist',
 		filename: 'bundle.js',
-		publicPath: 'dist/'
+		publicPath: '/dist/'
 	},
 	module:{
 		rules: [
@@ -50,19 +50,33 @@ module.exports = {
 				use: [
 					{
 						loader: 'url-loader',
-						options: { limit: 40000 }
+						options: { limit: 10000 }
 					},
 					'image-webpack-loader'
 				]
 			}
 		]
 	},
-	plugins: [new webpack.optimize.UglifyJsPlugin({
-		minimize: true,
-		compress: {
-			warnings: false
-		}
-	})],
+  plugins: [new webpack.optimize.UglifyJsPlugin({
+    output: {
+      comments: false
+    },
+    minimize: true,
+    compress: {
+      sequences: true,
+      dead_code: true,
+      conditionals: true,
+      booleans: true,
+      unused: true,
+      if_return: true,
+      join_vars: true,
+      drop_console: true
+    },
+    mangle: {
+      except: ['$super', '$', 'exports', 'require']
+    },
+
+  })],
 	devServer: {
 		inline:true,
 		port: 8081

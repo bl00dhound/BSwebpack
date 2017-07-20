@@ -16,22 +16,9 @@ const showElement = (user) => {
 	div.append(`${user.name} ${user.age}`)
 	container.appendChild(div)
 }
-
+// comment
 const userList = (users) => {
 	R.forEach(showElement)(customSort(users))
 }
 
 export default userList
-
-
-// function userList(users) {
-// const container = document.getElementById('root');
-// const sortedUsers = R.sort((a, b) => a - b, users);
-// this.showList = () => {
-//   sortedUsers.forEach((user) => {
-//     const div = document.createElement("div");
-//     div.append(user.name + ' ' + user.age);
-//     container.appendChild(div);
-//   });
-// }
-// }
