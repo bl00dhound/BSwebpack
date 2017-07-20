@@ -1,10 +1,18 @@
 .container {
+  height: 100%;
   color: darkblue;
+  display: inline-block;
 }
 div {
+
   img {
+    transition: all .5s;
     margin-right: 10px;
     border-radius: 30px;
   }
   margin: 10px;
+}
+#image {
+  width: 60%;
+  float: right;
 }
