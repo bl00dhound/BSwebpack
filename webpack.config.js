@@ -1,5 +1,5 @@
-const webpack = require('webpack')
-const path = require('path')
+const webpack = require('webpack');
+const path = require('path');
 const autoprefixer = require('autoprefixer')
 
 module.exports = {
@@ -13,16 +13,23 @@ module.exports = {
 	},
 	module:{
 		rules: [
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: [
+					{
+            loader: 'eslint-loader',
+						options: {
+            	errorEmit: true
+						}
+					}
+				]
+      },
 			{
 				test: /\.js$/,
 				exclude: /(node_modules)/,
 				use: [
-          {
-            loader: 'eslint-loader',
-            options: {
-              quiet: true
-            }
-          },
 					{
 						loader: 'babel-loader',
 						options: {
@@ -57,26 +64,25 @@ module.exports = {
 			}
 		]
 	},
-  plugins: [new webpack.optimize.UglifyJsPlugin({
-    output: {
-      comments: false
-    },
-    minimize: true,
-    compress: {
-      sequences: true,
-      dead_code: true,
-      conditionals: true,
-      booleans: true,
-      unused: true,
-      if_return: true,
-      join_vars: true,
-      drop_console: true
-    },
-    mangle: {
-      except: ['$super', '$', 'exports', 'require']
-    }
-
-  })],
+	plugins: [new webpack.optimize.UglifyJsPlugin({
+		output: {
+			comments: false
+		},
+		minimize: true,
+		compress: {
+			sequences: true,
+			dead_code: true,
+			conditionals: true,
+			booleans: true,
+			unused: true,
+			if_return: true,
+			join_vars: true,
+			drop_console: true
+		},
+		mangle: {
+			except: ['$super', '$', 'exports', 'require']
+		}
+	})],
 	devServer: {
 		inline:true,
 		port: 8081

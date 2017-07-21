@@ -15,5 +15,5 @@ const users = [
 	{ name: 'Zakhar', age: 40}
 ]
 
-userList(users)
+userList(users);
 
